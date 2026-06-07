@@ -27,9 +27,9 @@ These angles are chosen because multiplication by 2^-i can be implemented using 
 
 The basic rotation equations used are:
 
-x[i+1] = x[i] - d[i] * (y[i] >>> i)
-y[i+1] = y[i] + d[i] * (x[i] >>> i)
-z[i+1] = z[i] - d[i] * atan(2^-i)
+x[i+1]	x[i+1] = x[i] - d[i] * (y[i] >>> i)	
+y[i+1]	y[i+1] = y[i] + d[i] * (x[i] >>> i)	
+z[i+1]	z[i+1] = z[i] - d[i] * atan(2^-i)
 
 where d[i] decides the direction of rotation depending on the sign of the remaining angle z[i].
 
