@@ -19,24 +19,28 @@ For sine and cosine generation:
 
 ## CORDIC Theory
 
+CORDIC Theory
+
 CORDIC rotates a vector using a set of predefined angles:
 
 atan(2^-0), atan(2^-1), atan(2^-2), atan(2^-3), ...
 
-These angles are chosen because multiplication by 2^-i can be implemented using a simple right shift operation.
+These angles are chosen because multiplication by 2^-i can be implemented using a simple right-shift operation.
 
 The basic rotation equations used are:
 
-x[i+1]	x[i+1] = x[i] - d[i] * (y[i] >>> i)	
-y[i+1]	y[i+1] = y[i] + d[i] * (x[i] >>> i)	
+Updated Value	Equation
+x[i+1]	x[i+1] = x[i] - d[i] * (y[i] >>> i)
+y[i+1]	y[i+1] = y[i] + d[i] * (x[i] >>> i)
 z[i+1]	z[i+1] = z[i] - d[i] * atan(2^-i)
 
-where d[i] decides the direction of rotation depending on the sign of the remaining angle z[i].
+Here, d[i] decides the direction of rotation depending on the sign of the remaining angle z[i].
 
-If z[i] is positive, the vector is rotated in one direction.
-If z[i] is negative, the vector is rotated in the opposite direction.
+Condition	Rotation Direction	Angle Update
+z[i] >= 0	Rotate in the positive direction	Subtract atan(2^-i) from z[i]
+z[i] < 0	Rotate in the negative direction	Add atan(2^-i) to z[i]
 
-After several iterations, the remaining angle becomes close to zero, and the final x and y values represent cosine and sine respectively.
+After several iterations, the remaining angle becomes close to zero. The final x and y values represent the cosine and sine values respectively.
 
 ## Fixed-Point Representation
 
