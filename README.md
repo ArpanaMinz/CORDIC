@@ -79,12 +79,13 @@ This design was simulated using EDA Playground.
 
 ## Test Cases
 
-The testbench verifies the CORDIC output for angles such as:
-Angle = 0 deg
-xn/cos = 1.000000, yn/sin = 0.000046, zn = 0.000092
-Angle = 45 deg
-xn/cos = 0.707108, yn/sin = 0.707123, zn = -0.000061
-Angle = 90 deg
-xn/cos = 0.000046, yn/sin = 1.000000, zn = -0.000092
+The testbench verifies the CORDIC output for different input angles.
+
+| Input Angle | `xn / cos` | `yn / sin` |      `zn` |
+| ----------: | ---------: | ---------: | --------: |
+|          0° |   1.000000 |   0.000046 |  0.000092 |
+|         45° |   0.707108 |   0.707123 | -0.000061 |
+|         90° |   0.000046 |   1.000000 | -0.000092 |
+
 
 
