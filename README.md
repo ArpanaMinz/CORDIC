@@ -19,28 +19,36 @@ For sine and cosine generation:
 
 ## CORDIC Theory
 
-CORDIC Theory
-
 CORDIC rotates a vector using a set of predefined angles:
 
+```text
 atan(2^-0), atan(2^-1), atan(2^-2), atan(2^-3), ...
+```
 
-These angles are chosen because multiplication by 2^-i can be implemented using a simple right-shift operation.
+These angles are chosen because multiplication by `2^-i` can be implemented using a simple right-shift operation.
 
 The basic rotation equations used are:
 
-Updated Value	Equation
-x[i+1]	x[i+1] = x[i] - d[i] * (y[i] >>> i)
-y[i+1]	y[i+1] = y[i] + d[i] * (x[i] >>> i)
-z[i+1]	z[i+1] = z[i] - d[i] * atan(2^-i)
+| Updated Value | Equation                              |
+| ------------- | ------------------------------------- |
+| `x[i+1]`      | `x[i+1] = x[i] - d[i] * (y[i] >>> i)` |
+| `y[i+1]`      | `y[i+1] = y[i] + d[i] * (x[i] >>> i)` |
+| `z[i+1]`      | `z[i+1] = z[i] - d[i] * atan(2^-i)`   |
 
-Here, d[i] decides the direction of rotation depending on the sign of the remaining angle z[i].
+Here, `d[i]` decides the direction of rotation depending on the sign of the remaining angle `z[i]`.
 
-Condition	Rotation Direction	Angle Update
-z[i] >= 0	Rotate in the positive direction	Subtract atan(2^-i) from z[i]
-z[i] < 0	Rotate in the negative direction	Add atan(2^-i) to z[i]
+| Condition   | Rotation Direction               | Angle Update                      |
+| ----------- | -------------------------------- | --------------------------------- |
+| `z[i] >= 0` | Rotate in the positive direction | Subtract `atan(2^-i)` from `z[i]` |
+| `z[i] < 0`  | Rotate in the negative direction | Add `atan(2^-i)` to `z[i]`        |
 
-After several iterations, the remaining angle becomes close to zero. The final x and y values represent the cosine and sine values respectively.
+After several iterations, the remaining angle becomes close to zero. The final `x` and `y` values represent the cosine and sine values respectively.
+
+| Final Output | Meaning                                   |
+| ------------ | ----------------------------------------- |
+| `xn`         | Approximate value of `cos(z0)`            |
+| `yn`         | Approximate value of `sin(z0)`            |
+| `zn`         | Remaining angle error, approximately zero |
 
 ## Fixed-Point Representation
 
