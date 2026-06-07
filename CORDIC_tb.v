@@ -1,5 +1,3 @@
-// Code your testbench here
-// or browse Examples
 `timescale 1ns/100ps
 
 module cordic_tb;
@@ -16,9 +14,9 @@ module cordic_tb;
       .x0(x0),
       .y0(y0),
       .z0(z0),
-        .xn(xn),
-        .yn(yn),
-        .zn(zn)
+      .xn(xn),
+      .yn(yn),
+      .zn(zn)
     );
 
     initial begin
