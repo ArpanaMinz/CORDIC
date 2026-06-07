@@ -58,20 +58,39 @@ The input angle values are represented in degrees using the same fixed-point for
 
 ## CORDIC Scaling Factor
 
-CORDIC introduces an internal gain of approximately:1.64676
-To compensate for this gain, the initial x-value is chosen as: 1 / 1.64676 = 0.607252
+CORDIC introduces an internal gain of approximately:
 
-In Q16 fixed-point format: x0 = 32'h00009B75;
+```text
+1.64676
+```
 
-For sine and cosine calculation:
+To compensate for this gain, the initial x-value is chosen as:
+
+```text
+1 / 1.64676 = 0.607252
+```
+
+In Q16 fixed-point format:
+
+```verilog
 x0 = 32'h00009B75;   // 0.607252
-y0 = 32'h00000000;   // 0
-z0 = input angle
+```
+
+For sine and cosine calculation, the initial inputs are:
+
+| Signal | Value          | Meaning                                                  |
+| ------ | -------------- | -------------------------------------------------------- |
+| `x0`   | `32'h00009B75` | CORDIC scale compensation factor, approximately 0.607252 |
+| `y0`   | `32'h00000000` | Initial y-coordinate, equal to 0                         |
+| `z0`   | Input angle    | Angle for which sine and cosine are calculated           |
 
 After the CORDIC iterations:
-xn ≈ cos(z0)
-yn ≈ sin(z0)
-zn ≈ 0
+
+| Output | Meaning                                |
+| ------ | -------------------------------------- |
+| `xn`   | `cos(z0)`                              |
+| `yn`   | `sin(z0)`                              |
+| `zn`   | Remaining angle error, approximately 0 |
 
 ## Simulation
 
