@@ -1,4 +1,4 @@
-# CORDIC Architecture in Verilog
+# Implementation of Rotation Mode CORDIC Architecture on Basys3 FPGA board
 
 This repository contains a Verilog implementation of the **CORDIC (COordinate Rotation DIgital Computer)** algorithm. The design is written for simulation and understanding of the CORDIC rotation-mode architecture.
 
